@@ -87,7 +87,16 @@ module.exports = router => {
           error
         )
       }
-      return sendResponse(res, location)
+      var males = _.sumBy(locations, 'male')
+      var females = _.sumBy(locations, 'female')
+      var residents = males + females
+
+      return sendResponse(res, {
+        locations: JSON.stringify(locations),
+        males,
+        females,
+        residents
+      })
     })
   })
 

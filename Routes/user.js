@@ -17,7 +17,7 @@ module.exports = router => {
     const { name, email, password } = req.body
     var validation = validateInput({
       name: { value: name, required: true },
-      email: { value: email, required: true, length: 10 },
+      email: { value: email, required: true, type: 'email' },
       password: { value: password, required: true, minLength: 5 }
     })
 
@@ -68,7 +68,7 @@ module.exports = router => {
 
   // Get my user details
   router.get(`${URL_PREFIX}`, verifyToken, (req, res) => {
-    User.findById(req.decodedToken.userId, (error, user) => {
+    User.findOne({ email: req.decodedToken.userId }, (error, user) => {
       if (error) {
         return sendResponse(
           res,
@@ -79,7 +79,7 @@ module.exports = router => {
           error
         )
       }
-      return sendResponse(res, user)
+      return sendResponse(res, _.omit(user, ['password']))
     })
   })
 
@@ -88,7 +88,7 @@ module.exports = router => {
     const { name, email, password } = req.body
     var validation = validateInput({
       name: { value: name, minLength: 2 },
-      email: { value: email, length: 10 },
+      email: { value: email, type: 'email' },
       password: { value: password, minLength: 5 }
     })
 

@@ -18,7 +18,7 @@ exports.createUser = (app, user) => {
   user = user || userB
 
   return request(app)
-    .post('/api/v1/user/')
+    .post('/api/v1/user')
     .send(user)
     .set('Content-Type', 'application/json')
 }

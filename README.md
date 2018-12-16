@@ -117,17 +117,25 @@ method : GET
 headers: content-Type →application/json
 returns:
 
-    `{
-    "success": true,
-    "data": [{
-        "_id": "5c155afb60bf0f0518328497",
-        "name": "Kampala",
-        "female": "200",
-        "male": "100",
-        "parent_id": "5c155afb60bf0f0518328496"
-        "created": "2018-12-15T19:50:19.775Z",
-        "__v": 0
-    }]
+    `
+
+{
+"success": true,
+"data": { "locations":
+[
+{
+"_id":"5c16d9890c2b275772541f47",
+"name":"Kampala",
+"female":"100",
+"male":"50",
+"created":"2018-12-16T23:02:33.003Z",
+"__v":0
+}
+],
+"males":50,
+"females":100,
+"residents": 150
+}
 
 }`
 
